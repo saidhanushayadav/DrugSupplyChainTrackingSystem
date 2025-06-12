@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	{% include "header.html" %}
+</head>
+<body>
+	{% include "menu1.html" %}
+	<div class="register-form-main">
+		<div class="container">
+			<div class="title-div">
+				<h3 class="tittle">
+					<span>R</span>egistration <span>F</span>orm
+				</h3>
+				<div class="tittle-style" align="center">
+					<br/>
+					<p>If you have an account with us, please log in.</p>
+					<p style="color: red; size: 50px;">{{message}}</p>
+				</div>
+			</div>
+			<div class="login-form">
+				<form name="form" action="/regaction/" method="post">
+                    {% csrf_token %}
+					<div class="">
+						<p>User Name</p>
+						<input type="text" class="name" name="username" required="required"/>
+					</div>
+
+					<div class="">
+						<p>Password</p>
+						<input type="password" class="name" name="password" required="required"/>
+					</div>
+
+                    <div class="">
+						<p>Name</p>
+						<input type="text" class="name" name="name" required="required"/>
+					</div>
+
+					<div class="">
+						<p>Email</p>
+						<input type="email" class="name" name="email" required="required"/>
+					</div>
+                    <div class="">
+						<p>Mobile</p>
+						<input type="text" class="name" name="mobile" required="required" pattern="[6789][0-9]{9}"/>
+					</div>
+					<div class="">
+						<p>Select User Type</p>
+						<select class="name" name="role" required="required" style="width: 580px;height: 45px;">
+                            <option value="">--select--</option>
+                            <option value="manufacturer">manufacturer</option>
+                            <option value="distributor">distributor</option>
+                            <option value="supplier">supplier</option>
+							<option value="pharmacist">pharmacist</option>
+                        </select>
+					</div>
+					<br />
+					<input type="submit" value="Register">
+				</form>
+			</div>
+		</div>
+	</div>
+	{% include "footer.html" %}
+</body>
+</html>

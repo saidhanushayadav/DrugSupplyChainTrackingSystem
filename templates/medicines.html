@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	{% include "header.html" %}
+</head>
+<body>
+	{% include "menu2.html" %}
+	<div class="register-form-main">
+		<div class="container">
+			<div class="title-div">
+				<h3 class="tittle">
+					<span>M</span>edicine's
+				</h3>
+				<div class="tittle-style" align="center">
+					<p style="color: red; size: 50px;">{{message}}</p>
+				</div>
+			</div>
+
+            <div class="login-form">
+				<form name="form" action="/search_medicine">
+					<div class="">
+						<p>Enter Medicine Name</p>
+						<input type="text" class="name" name="keyword" required="required"/>
+					</div>
+					<br />
+					<input type="submit" value="Search">
+				</form>
+			</div>
+            <br />
+            <hr/>
+			<table id="customers">
+				<tr>
+					<th>Name</th>
+                    <th>Brand</th>
+					<th>Expiry Date</th>
+					<th>Description</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Is Accepted</th>
+
+                    {% if request.session.role not in "manufacturer" %}
+                        <th>Manufacture</th>
+                    {% endif %}
+
+                    {% if request.session.role in "admin" or request.session.role in "manufacturer"%}
+                        <th>Update Status</th>
+                    {% endif %}
+
+                    {% if request.session.role in "manufacturer" %}
+                        <th>Delete</th>
+                    {% endif %}
+
+                    {% if request.session.role in "distributor" %}
+                        <th>Place Order</th>
+                    {% endif %}
+
+				</tr>
+
+				{% for medicine in medicines %}
+                    <tr>
+                        <td>{{medicine.name}}</td>
+                        <td>{{medicine.brand}}</td>
+                        <td>{{medicine.expiry_date}}</td>
+                        <td>{{medicine.description}}</td>
+                        <td>{{medicine.price}}</td>
+                        <td>{{medicine.quantity}}</td>
+                        <td>{{medicine.medicine_acceptance_status}}</td>
+
+                        {% if request.session.role not in "manufacturer" %}
+                            <td>{{medicine.manufacturer}}</td>
+                        {% endif %}
+
+                        {% if request.session.role in "admin" %}
+                            <td><a href="/update_medicine?id={{ medicine.id}}&updatetype=medicine_acceptance_status">update status</a></td>
+                        {% endif %}
+
+                        {% if request.session.role in "manufacturer" %}
+                            <td><a href="/update_medicine?id={{ medicine.id}}&updatetype=price">update medicine</a></td>
+                        {% endif %}
+
+                        {% if request.session.role in "manufacturer" %}
+                            <td><a href="/delete_medicine?id={{ medicine.id}}">Delete</a></td>
+                        {% endif %}
+
+                        {% if request.session.role in "distributor" %}
+                            <td><a href="/addorder?id={{ medicine.id}}">order medicine</a></td>
+                        {% endif %}
+
+                    </tr>
+                {% endfor %}
+
+			</table>
+		</div>
+	</div>
+	{% include "footer.html" %}
+</body>
+</html>

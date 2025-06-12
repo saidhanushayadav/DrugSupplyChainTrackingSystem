@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	{% include "header.html" %}
+</head>
+<body>
+	{% include "menu2.html" %}
+	<div class="register-form-main">
+		<div class="container">
+			<div class="title-div">
+				<h3 class="tittle">
+					<span>S</span>end <span>M</span>essage  {{message}}
+				</h3>
+			</div>
+			<div class="login-form">
+
+				<form name="form" action="/postmessageaction">
+                    <input type="hidden" value="{{ postedto }}" name="postedto">
+					<div class="">
+						<p>Message :</p>
+                        <textarea  class="name" name="message" required="required" style="width: 580px;height: 45px;"></textarea>
+					</div>
+
+					<br />
+					<input type="submit" value="Send Message">
+				</form>
+			</div>
+		</div>
+	</div>
+	{% include "footer.html" %}
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	{% include "header.html" %}
+</head>
+<body>
+	{% include "menu2.html" %}
+	<div class="register-form-main">
+		<div class="container">
+			<div class="title-div">
+				<h3 class="tittle">
+					<span>R</span>egistration <span>F</span>orm
+				</h3>
+				<div class="tittle-style" align="center">
+					<br/>
+					<p>If you have an account with us, please log in.</p>
+					<p style="color: red; size: 50px;">{{message}}</p>
+				</div>
+			</div>
+			<div class="login-form">
+				<form name="form" action="/payment">
+                    <input type="hidden" name="medicine_id" value="{{medicine_id}}">
+					<div class="">
+						<p>Quantity</p>
+						<input type="number" class="name" name="quantity" required="required" style="width: 580px;height: 45px;"/>
+					</div>
+					<br />
+					<input type="submit" value="Place Order">
+				</form>
+			</div>
+		</div>
+	</div>
+	{% include "footer.html" %}
+</body>
+</html>

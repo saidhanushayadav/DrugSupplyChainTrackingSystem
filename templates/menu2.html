@@ -1,0 +1,37 @@
+<!-- header -->
+<div class="header-top">
+	<div class="container">
+		<font color="white" size="5">Drug Suppy Chain Tracking System</font>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+		{% if request.session.role in "manufacturer" %}
+			<a href="/add_medicine"><font color="white">Add Medicine</font></a>&nbsp;&nbsp;
+		{% endif %}
+
+		{% if request.session.role in "distributor" or request.session.role in "manufacturer" or request.session.role in "admin"%}
+			<a href="/view_medicines"><font color="white">Medicine</font></a>&nbsp;&nbsp;
+		{% endif %}
+
+		{% if request.session.role in "distributor" or request.session.role in "pharmacist"%}
+			<a href="/getmessages"><font color="white">Messages</font></a>&nbsp;&nbsp;
+		{% endif %}
+
+		<a href="/getorders"><font color="white">Orders</font></a>&nbsp;&nbsp;
+
+		{% if request.session.role in "admin" %}
+			<a href="/verifyblockchain"><font color="white">Verify Data Integrity</font></a>&nbsp;&nbsp;
+		{% endif %}
+
+		<div class="bottom_header_right">
+			<div class="header-top-righ">
+				<a href="/logout"> <span class="fa fa-sign-out"
+					aria-hidden="true"></span>Logout
+				</a>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<!-- banner -->

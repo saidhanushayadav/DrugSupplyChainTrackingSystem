@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	{% include "header.html" %}
+</head>
+<body>
+	{% include "menu2.html" %}
+	<div class="register-form-main">
+		<div class="container">
+			<div class="title-div">
+				<h3 class="tittle">
+					<span>U</span>pdate <span>M</span>edicine
+				</h3>
+			</div>
+			<div class="login-form">
+
+				<form name="form" action="/update_medicine_action">
+
+                    <input type="hidden" name="updatetype" value="{{updatetype}}">
+                    <input type="hidden" name="id" value="{{id}}">
+
+                    {% if updatetype == "medicine_acceptance_status" %}
+                        <div class="">
+						  <p>Select Status</p>
+                            <select class="name" name="status" required="required" style="width: 580px;height: 45px;">
+                              <option value="">--select--</option>
+                              <option value="accepted">Accept</option>
+                              <option value="rejected">Reject</option>
+                          </select>
+					    </div>
+                    {% endif %}
+
+                    {% if updatetype == "price" %}
+                        <div class="">
+                            <p>Price</p>
+                            <input type="number" class="name" name="price" required="required" style="width: 580px;height: 45px;"/>
+                        </div>
+                        <div class="">
+                            <p>Quantity</p>
+                            <input type="number" class="name" name="quantity" required="required" style="width: 580px;height: 45px;"/>
+                        </div>
+                    {% endif %}
+
+					<br />
+					<input type="submit" value="Update Medicine">
+				</form>
+			</div>
+		</div>
+	</div>
+	{% include "footer.html" %}
+</body>
+</html>

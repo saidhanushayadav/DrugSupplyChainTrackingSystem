@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	{% include "header.html" %}
+</head>
+<body>
+	{% include "menu2.html" %}
+	<div class="register-form-main">
+		<div class="container">
+			<div class="title-div">
+				<h3 class="tittle">
+					<span>O</span>rder's
+				</h3>
+				<div class="tittle-style" align="center">
+					<p style="color: red; size: 50px;">{{message}}</p>
+				</div>
+			</div>
+			<table id="customers">
+
+				<tr>
+					<th>Manufacturer</th>
+                    <th>Medicine</th>
+					<th>Order Date</th>
+					<th>Quantity</th>
+                    <th>Price</th>
+                    <th>Distributor Price</th>
+                    <th>Status</th>
+                    <th>Supplier</th>
+                    <th>Pharmacist</th>
+
+                    {% if request.session.role in "distributor" %}
+                        <th>Update Price</th>
+                    {% endif %}
+
+                    {% if request.session.role not in "distributor" %}
+                        <th>assigned_distributor</th>
+                    {% endif %}
+
+                    {% if request.session.role in "distributor" %}
+                        <th>Assign</th>
+                    {% endif %}
+
+                    {% if request.session.role not in "distributor" and request.session.role not in "admin"%}
+                        <th>Update Status</th>
+                    {% endif %}
+
+                    {% if request.session.role in "pharmacist" %}
+                        <th>Send Message</th>
+                    {% endif %}
+
+				</tr>
+
+				{% for order in orders %}
+                    <tr>
+                        <td>{{order.manufacturer}}</td>
+                        <td>{{order.medicine.name}}</td>
+                        <td>{{order.order_date}}</td>
+                        <td>{{order.quantity}}</td>
+                        <td>{{order.price}}</td>
+                        <td>{{order.distributor_price}}</td>
+                        <td>{{order.order_status}}</td>
+                        <td>{{order.assigned_supplier}}</td>
+                        <td>{{order.assigned_pharmacist}}</td>
+
+                        {% if request.session.role in "distributor" %}
+                            <td><a href="/updateorderprice?id={{order.id}}">update price</a></td>
+                        {% endif %}
+
+                        {% if request.session.role not in "distributor" %}
+                            <td>{{order.assigned_distributor}}</td>
+                        {% endif %}
+
+                        {% if request.session.role in "distributor" %}
+                            <td><a href="/assignorder?id={{order.id}}">assign</a></td>
+                        {% endif %}
+
+                        {% if request.session.role not in "distributor" and request.session.role not in "admin"%}
+                            <td><a href="/updateorderstatus?id={{order.id}}">update status</a></td>
+                        {% endif %}
+
+                        {% if request.session.role in "pharmacist" %}
+                            <td><a href="/postmessage?postedto={{order.assigned_distributor}}">Post Message</a></td>
+                        {% endif %}
+
+                    </tr>
+
+                {% endfor %}
+
+			</table>
+		</div>
+	</div>
+	{% include "footer.html" %}
+</body>
+</html>

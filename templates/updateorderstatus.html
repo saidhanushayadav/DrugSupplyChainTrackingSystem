@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	{% include "header.html" %}
+</head>
+<body>
+	{% include "menu2.html" %}
+	<div class="register-form-main">
+		<div class="container">
+			<div class="title-div">
+				<h3 class="tittle">
+					<span>U</span>pdate <span>O</span>rder Status
+				</h3>
+			</div>
+			<div class="login-form">
+
+				<form name="form" action="/updateorderstatusaction">
+                   <input type="hidden" name="id" value="{{id}}">
+
+					<div class="">
+						<p>Select Order Status</p>
+						<select class="name" name="order_status" required="required" style="width: 580px;height: 45px;">
+                            <option value="">--select--</option>
+
+							{%if request.session.role in "manufacturer" %}
+								<option value="Processing">Processing</option>
+                            	<option value="Dispatched">Dispatched</option>
+							{%endif%}
+
+							{%if request.session.role in "supplier" %}
+								<option value="Shipping">Shipping</option>
+                            	<option value="Delivered">Delivered</option>
+							{%endif%}
+
+							{%if request.session.role in "pharmacist" %}
+								<option value="Verified">Verified</option>
+                            	<option value="Cancelled">Cancelled</option>
+							{%endif%}
+
+                        </select>
+					</div>
+
+                   <br />
+                   <input type="submit" value="Update Status">
+				</form>
+
+			</div>
+		</div>
+	</div>
+	{% include "footer.html" %}
+</body>
+</html>

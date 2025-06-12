@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	{% include "header.html" %}
+</head>
+<body>
+	{% include "menu2.html" %}
+	<div class="register-form-main">
+		<div class="container">
+			<div class="title-div">
+				<h3 class="tittle">
+					<span>M</span>essage's
+				</h3>
+				<div class="tittle-style" align="center">
+					<p style="color: red; size: 50px;">{{message}}</p>
+				</div>
+			</div>
+			<table id="customers">
+
+              <tr>
+                <th>Message</th>
+                <th>Posted by</th>
+                <th>Posted to</th>
+                <th>Date</th>
+                <th>reply</th>
+                <th>delete</th>
+              </tr>
+
+              {% for message in messages %}
+                <tr>
+                  <td>{{ message.message}}</td>
+                  <td>{{ message.postedby}}</td>
+                  <td>{{ message.postedto}}</td>
+                  <td>{{ message.mdate}}</td>
+                  <td><a href="/postmessage?postedto={{message.postedby}}">reply</a></td>
+                  <td><a href="/deletemessages?messageid={{ message.id}}">delete</a></td>
+                </tr>
+              {% endfor %}
+
+			</table>
+		</div>
+	</div>
+	{% include "footer.html" %}
+</body>
+</html>

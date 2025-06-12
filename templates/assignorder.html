@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	{% include "header.html" %}
+</head>
+<body>
+	{% include "menu2.html" %}
+	<div class="register-form-main">
+		<div class="container">
+			<div class="title-div">
+				<h3 class="tittle">
+					<span>A</span>ssign <span>O</span>rder
+				</h3>
+			</div>
+			<div class="login-form">
+
+				<form name="form" action="/assignorderaction">
+                    <input type="hidden" name="id" value="{{id}}">
+					<div class="">
+						<p>Select Supplier</p>
+						<select class="name" name="supplier" required="required" style="width: 580px;height: 45px;">
+                            <option value="">--select--</option>
+                            {% for user in users %}
+                                {% if user.role in "supplier" %}
+                                  <option value="{{user.username}}">{{user.username}}</option>
+                                {% endif %}
+                            {% endfor%}
+                        </select>
+					</div>
+
+                    <div class="">
+						<p>Select Pharmacist</p>
+						<select class="name" name="pharmacist" required="required" style="width: 580px;height: 45px;">
+                            <option value="">--select--</option>
+                            {% for user in users %}
+                                {% if user.role in "pharmacist" %}
+                                  <option value="{{user.username}}">{{user.username}}</option>
+                                {% endif %}
+                            {% endfor%}
+                        </select>
+					</div>
+					<br />
+					<input type="submit" value="Assign">
+				</form>
+			</div>
+		</div>
+	</div>
+	{% include "footer.html" %}
+</body>
+</html>

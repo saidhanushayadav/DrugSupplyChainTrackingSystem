@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	{% include "header.html" %}
+</head>
+<body>
+	{% include "menu2.html" %}
+	<div class="register-form-main">
+		<div class="container">
+			<div class="title-div">
+				<h3 class="tittle">
+					<span>U</span>pdate <span>M</span>edicine
+				</h3>
+			</div>
+			<div class="login-form">
+
+				<form name="form" action="/updateorderpriceaction">
+                   <input type="hidden" name="id" value="{{id}}">
+                   <div class="">
+                     <p>Price</p>
+                     <input type="number" class="name" name="distibutor_price" required="required" style="width: 580px;height: 45px;"/>
+                   </div>
+
+                   <br />
+                   <input type="submit" value="Update Price">
+				</form>
+
+			</div>
+		</div>
+	</div>
+	{% include "footer.html" %}
+</body>
+</html>
