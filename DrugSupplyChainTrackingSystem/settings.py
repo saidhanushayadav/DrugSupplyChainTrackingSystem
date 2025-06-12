@@ -127,7 +127,7 @@ STATICFILES_DIRS= [STATIC_DIR1]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DEBUG = False
-ALLOWED_HOSTS = ['DrugSupplyChainTrackingSystem.pythonanywhere.com']
+ALLOWED_HOSTS = [*]
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
